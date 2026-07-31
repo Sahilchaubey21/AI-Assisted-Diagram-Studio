@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-canvas text-ink font-body antialiased;
+}
+
+::selection {
+  background: #6C5CE7;
+  color: white;
+}
+
+/* Scrollbars — quiet, not the browser default */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9DAF0;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8BAE3;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-signal px-5 py-2.5
+           font-body font-semibold text-white shadow-soft transition-all
+           hover:bg-signal-dark hover:shadow-glow active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-5 py-2.5
+           font-body font-semibold text-ink transition-all
+           hover:border-signal hover:text-signal active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2
+           font-body font-medium text-slate transition-colors hover:bg-canvasdim hover:text-ink;
+  }
+  .input-field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 font-body text-ink
+           placeholder:text-slate-light outline-none transition-all
+           focus:border-signal focus:shadow-glow;
+  }
+  .card {
+    @apply rounded-xl2 border border-line bg-white shadow-soft;
+  }
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.14em] text-signal;
+  }
+}
+
+/* Focus visibility for keyboard nav, kept subtle but present everywhere */
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid #6C5CE7;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
